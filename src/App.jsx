@@ -1,3 +1,4 @@
+import { useState } from "react";
 import JobCard from "./components/JobCard";
 
 import "./App.css";
@@ -30,11 +31,22 @@ const jobs = [
 ];
 
 function App() {
+  const [showAppliedOnly, setShowAppliedOnly] = useState(false);
+
+  const visibleJobs = showAppliedOnly
+    ? jobs.filter((job) => job.applied)
+    : jobs;
+
   return (
     <div className="cardList">
-      {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+      <button onClick={() => setShowAppliedOnly(!showAppliedOnly)}>
+        {showAppliedOnly ? "Show All" : "Show Applied"}
+      </button>
+      {visibleJobs.length !== 0 ? (
+        visibleJobs.map((job) => <JobCard job={job} />)
+      ) : (
+        <p>0 Jobs Applied</p>
+      )}
     </div>
   );
 }
