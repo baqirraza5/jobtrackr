@@ -2,6 +2,7 @@ import { useState } from "react";
 import JobCard from "./components/JobCard";
 
 import "./App.css";
+import GitHubCard from "./components/GitHubCard";
 
 const jobs = [
   {
@@ -58,6 +59,8 @@ function App() {
       ) : (
         <p>0 Jobs FOUND!!</p>
       )}
+      <p>{visibleJobs.length} Jobs FOUND</p>
+      <GitHubCard />
     </div>
   );
 }
