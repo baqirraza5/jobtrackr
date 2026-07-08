@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobCard from "./components/JobCard";
 
 import "./App.css";
@@ -44,6 +44,10 @@ function App() {
       (!showAppliedOnly || job.applied),
   );
 
+  useEffect(() => {
+    document.title = `${visibleJobs.length} Jobs Found`;
+  }, [visibleJobs.length]);
+
   return (
     <div className="cardList">
       <input
@@ -54,13 +58,12 @@ function App() {
       <button onClick={() => setShowAppliedOnly(!showAppliedOnly)}>
         {showAppliedOnly ? "Show All" : "Show Applied"}
       </button>
+      <GitHubCard />
       {visibleJobs.length !== 0 ? (
         visibleJobs.map((job) => <JobCard key={job.id} job={job} />)
       ) : (
         <p>0 Jobs FOUND!!</p>
       )}
-      <p>{visibleJobs.length} Jobs FOUND</p>
-      <GitHubCard />
     </div>
   );
 }
