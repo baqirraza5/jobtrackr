@@ -1,12 +1,10 @@
 import { useState } from "react";
 
 const initialJobData = {
-  id: crypto.randomUUID(),
   title: "",
   company: "",
   salary: "",
   location: "",
-  applied: false,
 };
 
 const AddJobForm = ({ onAdd }) => {
@@ -18,10 +16,15 @@ const AddJobForm = ({ onAdd }) => {
       job.title.trim() === "" ||
       job.company.trim() === "" ||
       job.location.trim() === "" ||
-      job.title.trim() === ""
+      job.salary.trim() === ""
     )
       return; // validation guard 🛡
-    onAdd(job);
+    onAdd({
+      ...job,
+      id: crypto.randomUUID(),
+      salary: Number(job.salary),
+      applied: false,
+    });
     setJob(initialJobData); // controlled input → clearing is one setter
   };
 
@@ -30,20 +33,23 @@ const AddJobForm = ({ onAdd }) => {
       <input
         value={job.title}
         onChange={(e) => setJob({ ...job, title: e.target.value })}
+        placeholder="Job Title"
       />
       <input
         value={job.company}
         onChange={(e) => setJob({ ...job, company: e.target.value })}
+        placeholder="Company"
       />
       <input
         value={job.salary}
-        onChange={(e) =>
-          setJob({ ...job, salary: Number(e.target.value) })
-        }
+        type="number"
+        onChange={(e) => setJob({ ...job, salary: e.target.value })}
+        placeholder="Salary"
       />
       <input
         value={job.location}
         onChange={(e) => setJob({ ...job, location: e.target.value })}
+        placeholder="Location"
       />
       <button type="submit">Add</button>
     </form>
