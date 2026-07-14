@@ -3,35 +3,10 @@ import JobCard from "./components/JobCard";
 
 import "./App.css";
 import GitHubCard from "./components/GitHubCard";
-
-const jobs = [
-  {
-    id: 1,
-    company: "Google",
-    title: "AI Product Engineer",
-    salary: 55000,
-    applied: false,
-    location: "London",
-  },
-  {
-    id: 2,
-    company: "Microsoft",
-    title: "Data Analyst",
-    salary: 59000,
-    applied: false,
-    location: "London",
-  },
-  {
-    id: 3,
-    company: "Meta",
-    title: "Full Stack Developer",
-    salary: 80000,
-    location: "London",
-    applied: false,
-  },
-];
+import { initialJobs } from "./utils/jobs";
 
 function App() {
+  const [jobs, setJobs] = useState(initialJobs);
   const [showAppliedOnly, setShowAppliedOnly] = useState(false);
   const [query, setQuery] = useState("");
 
