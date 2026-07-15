@@ -24,3 +24,5 @@ export const initialJobs = [
     applied: false,
   },
 ];
+
+export const STATUSES = ["saved", "applied", "interview", "offer"];

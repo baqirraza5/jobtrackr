@@ -32,6 +32,16 @@
   font-size: 18px;
 }
 
+.pill {
+  border-radius: 999px;
+}
+
+.active {
+  color: greenyellow;
+  background-color: green;
+  border-color: gold;
+}
+
 @media (min-width: 640px) {
   .cardList {
     flex-direction: row;
