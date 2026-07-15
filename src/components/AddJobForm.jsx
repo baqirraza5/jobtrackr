@@ -23,6 +23,7 @@ const AddJobForm = ({ onAdd }) => {
       ...job,
       id: crypto.randomUUID(),
       salary: Number(job.salary),
+      status: "saved",
     });
     setJob(initialJobData); // controlled input → clearing is one setter
   };
