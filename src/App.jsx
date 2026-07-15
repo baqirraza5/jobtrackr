@@ -37,13 +37,6 @@ function App() {
     localStorage.setItem("jobs", JSON.stringify(jobs));
   }, [jobs]);
 
-  const toggleApplied = (id) =>
-    setJobs(
-      jobs.map((j) =>
-        j.id === id ? { ...j, applied: !j.applied } : j,
-      ),
-    );
-
   const addJob = (newJob) => setJobs([...jobs, newJob]);
 
   const setStatus = (id, status) =>
@@ -72,7 +65,6 @@ function App() {
           <JobCard
             key={job.id}
             job={job}
-            onToggleApplied={toggleApplied}
             onStatusChange={setStatus}
           />
         ))

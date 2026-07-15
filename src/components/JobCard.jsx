@@ -1,6 +1,6 @@
 import { STATUSES } from "../utils/jobs";
 
-const JobCard = ({ job, onToggleApplied, onStatusChange }) => {
+const JobCard = ({ job, onStatusChange }) => {
   return (
     <div className="card">
       <div className="logo" />
@@ -11,9 +11,6 @@ const JobCard = ({ job, onToggleApplied, onStatusChange }) => {
         </p>
         <p>{job.location}</p>
       </div>
-      <button onClick={() => onToggleApplied(job.id)}>
-        {job.applied ? "Applied ✓" : "Mark applied"}
-      </button>
       <select
         value={job.status}
         onChange={(e) => onStatusChange(job.id, e.target.value)}

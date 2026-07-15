@@ -4,7 +4,7 @@ export const initialJobs = [
     company: "Google",
     title: "AI Product Engineer",
     salary: 55000,
-    applied: false,
+    status: "saved",
     location: "London",
   },
   {
@@ -12,7 +12,7 @@ export const initialJobs = [
     company: "Microsoft",
     title: "Data Analyst",
     salary: 59000,
-    applied: false,
+    status: "saved",
     location: "London",
   },
   {
@@ -21,7 +21,7 @@ export const initialJobs = [
     title: "Full Stack Developer",
     salary: 80000,
     location: "London",
-    applied: false,
+    status: "saved",
   },
 ];
 
