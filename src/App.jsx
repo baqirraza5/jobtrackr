@@ -42,8 +42,27 @@ function App() {
   const setStatus = (id, status) =>
     setJobs(jobs.map((j) => (j.id === id ? { ...j, status } : j)));
 
+  const counts = {
+    total: jobs.length,
+    ...STATUSES.reduce(
+      (acc, s) => ({
+        ...acc,
+        [s]: jobs.filter((j) => j.status === s).length,
+      }),
+      {},
+    ),
+  };
+
   return (
     <div className="card-list">
+      <div className="stats">
+        {["total", ...STATUSES].map((s) => (
+          <div className="stat" key={s}>
+            <div className="stat-number">{counts[s]}</div>
+            <div className="stat-label">{s}</div>
+          </div>
+        ))}
+      </div>
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
