@@ -43,7 +43,7 @@ function App() {
     setJobs(jobs.map((j) => (j.id === id ? { ...j, status } : j)));
 
   return (
-    <div className="cardList">
+    <div className="card-list">
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
