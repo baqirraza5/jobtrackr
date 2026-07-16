@@ -37,7 +37,7 @@ function App() {
     localStorage.setItem("jobs", JSON.stringify(jobs));
   }, [jobs]);
 
-  const addJob = (newJob) => setJobs([...jobs, newJob]);
+  const addJob = (newJob) => setJobs([newJob, ...jobs]);
 
   const setStatus = (id, status) =>
     setJobs(jobs.map((j) => (j.id === id ? { ...j, status } : j)));
