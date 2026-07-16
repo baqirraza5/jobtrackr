@@ -63,20 +63,23 @@ function App() {
           </div>
         ))}
       </div>
-      <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search by title or company..."
-      />
-      {["all", ...STATUSES].map((s) => (
-        <button
-          key={s}
-          className={statusFilter === s ? "pill active" : "pill"}
-          onClick={() => setStatusFilter(s)}
-        >
-          {s}
-        </button>
-      ))}
+      <div className="filters">
+        <input
+          className="input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by title or company..."
+        />
+        {["all", ...STATUSES].map((s) => (
+          <button
+            key={s}
+            className={statusFilter === s ? "pill active" : "pill"}
+            onClick={() => setStatusFilter(s)}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
       <GitHubCard />
       <AddJobForm onAdd={addJob} />
       {visibleJobs.length !== 0 ? (

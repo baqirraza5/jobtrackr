@@ -31,22 +31,26 @@ const AddJobForm = ({ onAdd }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className="input"
         value={job.title}
         onChange={(e) => setJob({ ...job, title: e.target.value })}
         placeholder="Job Title"
       />
       <input
+        className="input"
         value={job.company}
         onChange={(e) => setJob({ ...job, company: e.target.value })}
         placeholder="Company"
       />
       <input
+        className="input"
         value={job.salary}
         type="number"
         onChange={(e) => setJob({ ...job, salary: e.target.value })}
         placeholder="Salary"
       />
       <input
+        className="input"
         value={job.location}
         onChange={(e) => setJob({ ...job, location: e.target.value })}
         placeholder="Location"
