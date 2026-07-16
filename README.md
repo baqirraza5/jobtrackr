@@ -23,7 +23,7 @@ Built as part of rebuilding my frontend skills in public.
 ## Tech stack
 
 - **React 18** (hooks: useState, useEffect) + **Vite**
-- **Plain CSS** with design tokens (custom properties) no UI libraries,
+- **Plain CSS** with design tokens (custom properties) - no UI libraries,
   deliberately, to demonstrate CSS fundamentals: grid, flexbox, focus
   states, and a styled `<select>` as status badges
 - **No backend** — localStorage persistence (a backend + sync is on the roadmap)
