@@ -10,17 +10,6 @@ const JobCard = ({ job, onStatusChange }) => {
     .join(" · ");
 
   return (
-    // <div className="card">
-    //   <div className="logo" />
-    //   <div className="info">
-    //     <h3>{job.title}</h3>
-    //     <p>
-    //       {job.company} - £{job.salary}
-    //     </p>
-    //     <p>{job.location}</p>
-    //   </div>
-    //
-    // </div>
     <div className="job-card">
       <div className="avatar">{job.company[0].toUpperCase()}</div>
       <div className="job-info">
