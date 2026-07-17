@@ -3,22 +3,30 @@ import JobCard from "./components/JobCard";
 
 import "./App.css";
 import GitHubCard from "./components/GitHubCard";
-import { initialJobs, STATUSES } from "./utils/jobs";
+import {
+  initialJobs,
+  type Job,
+  type JobCount,
+  type Status,
+  STATUSES,
+} from "./utils/jobs";
 import AddJobForm from "./components/AddJobForm";
-import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 
 function App() {
-  const migrate = (job) =>
+  const migrate = (job: Job & { applied?: boolean }) =>
     job.status
       ? job
       : { ...job, status: job.applied ? "applied" : "saved" };
 
-  const [jobs, setJobs] = useState(() => {
+  const [jobs, setJobs] = useState<Job[]>(() => {
     const saved = localStorage.getItem("jobs");
     return saved ? JSON.parse(saved).map(migrate) : initialJobs;
   });
 
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | Status>(
+    "all",
+  );
   const [query, setQuery] = useState("");
 
   const q = query.toLowerCase();
@@ -38,27 +46,29 @@ function App() {
     localStorage.setItem("jobs", JSON.stringify(jobs));
   }, [jobs]);
 
-  const addJob = (newJob) => setJobs([newJob, ...jobs]);
+  const addJob = (newJob: Job) => setJobs([newJob, ...jobs]);
 
-  const setStatus = (id, status) =>
+  const setStatus = (id: number | string, status: Status) =>
     setJobs(jobs.map((j) => (j.id === id ? { ...j, status } : j)));
 
-  const counts = {
-    total: jobs.length,
-    ...STATUSES.reduce(
-      (acc, s) => ({
-        ...acc,
-        [s]: jobs.filter((j) => j.status === s).length,
-      }),
-      {},
-    ),
-  };
+  const statusCounts = STATUSES.reduce(
+    (acc, s) => ({
+      ...acc,
+      [s]: jobs.filter((j) => j.status === s).length,
+    }),
+    {} as Record<Status, number>,
+  );
+
+  const counts: JobCount = { ...statusCounts, total: jobs.length };
+
+  const statKeys: ("total" | Status)[] = ["total", ...STATUSES];
+  const filterKeys: ("all" | Status)[] = ["all", ...STATUSES];
 
   return (
     <div className="card-list">
-      <Header />
+      <NavBar />
       <div className="stats">
-        {["total", ...STATUSES].map((s) => (
+        {statKeys.map((s) => (
           <div className="stat" key={s}>
             <div className="stat-number">{counts[s]}</div>
             <div className="stat-label">{s}</div>
@@ -73,7 +83,7 @@ function App() {
           placeholder="Search by title or company..."
         />
         <div className="pill-row">
-          {["all", ...STATUSES].map((s) => (
+          {filterKeys.map((s) => (
             <button
               key={s}
               className={statusFilter === s ? "pill active" : "pill"}

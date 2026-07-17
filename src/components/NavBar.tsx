@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Header = () => {
+const NavBar = () => {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

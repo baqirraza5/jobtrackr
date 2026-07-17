@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useState, type SubmitEvent } from "react";
+import { type JobDraft, type Job } from "../utils/jobs";
 
-const initialJobData = {
+const initialJobData: JobDraft = {
   title: "",
   company: "",
   salary: "",
   location: "",
 };
 
-const AddJobForm = ({ onAdd }) => {
+type AddJobFormProps = {
+  onAdd: (job: Job) => void;
+};
+
+const AddJobForm = ({ onAdd }: AddJobFormProps) => {
   const [job, setJob] = useState(initialJobData);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (job.title.trim() === "" || job.company.trim() === "") {

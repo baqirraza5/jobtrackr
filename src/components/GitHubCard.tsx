@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 
+type GitHubUser = {
+  name: string;
+  public_repos: number;
+  followers: number;
+};
+
 const GitHubCard = () => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<GitHubUser | null>(null);
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -25,14 +31,18 @@ const GitHubCard = () => {
           setErrMsg(data.message);
         }
       } catch (error) {
-        setErrMsg(error.message);
+        setErrMsg(
+          error instanceof Error
+            ? error.message
+            : "Something went wrong",
+        );
       }
 
       setLoading(false);
     };
 
     fetchGitHubData();
-  }, []);
+  });
 
   if (loading) return <p className="gh-loading">Loading profile…</p>;
   if (!user) return <p className="gh-loading">{errMsg}</p>;
