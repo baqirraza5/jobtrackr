@@ -6,7 +6,7 @@ import GitHubCard from "./components/GitHubCard";
 import {
   initialJobs,
   type Job,
-  JobCount,
+  type JobCount,
   type Status,
   STATUSES,
 } from "./utils/jobs";
