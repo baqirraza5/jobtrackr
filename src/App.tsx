@@ -24,7 +24,9 @@ function App() {
     return saved ? JSON.parse(saved).map(migrate) : initialJobs;
   });
 
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | Status>(
+    "all",
+  );
   const [query, setQuery] = useState("");
 
   const q = query.toLowerCase();
@@ -60,6 +62,7 @@ function App() {
   const counts: JobCount = { ...statusCounts, total: jobs.length };
 
   const statKeys: ("total" | Status)[] = ["total", ...STATUSES];
+  const filterKeys: ("all" | Status)[] = ["all", ...STATUSES];
 
   return (
     <div className="card-list">
@@ -80,7 +83,7 @@ function App() {
           placeholder="Search by title or company..."
         />
         <div className="pill-row">
-          {["all", ...STATUSES].map((s) => (
+          {filterKeys.map((s) => (
             <button
               key={s}
               className={statusFilter === s ? "pill active" : "pill"}

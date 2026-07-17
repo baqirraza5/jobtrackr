@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { GitHubUser } from "../utils/jobs";
+
+type GitHubUser = {
+  name: string;
+  public_repos: number;
+  followers: number;
+};
 
 const GitHubCard = () => {
   const [loading, setLoading] = useState(true);

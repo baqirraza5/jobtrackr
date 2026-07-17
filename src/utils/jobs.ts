@@ -16,12 +16,6 @@ export type JobDraft = {
   location: string;
 };
 
-export type GitHubUser = {
-  name: string;
-  public_repos: number;
-  followers: number;
-};
-
 export type JobCount = Record<Status, number> & { total: number };
 
 export const initialJobs: Job[] = [
